@@ -1,0 +1,110 @@
+Q1 Count the number of triplets whose sum is equal to the given value x.
+ANS - #include <iostream>
+      using namespace std;
+      int main() {
+          int x;
+          cin>>x;
+          int A[5];
+          cout<<"Enter 5 elements for the array :"<<endl;
+          for(int i=0;i<5;i++)cin>>A[i];
+          int count = 0;
+          for(int i = 0; i < 5; i++){
+              for(int j = i + 1; j < 5; j++){
+                  for(int k = j + 1; k < 5; k++){
+                      if(A[i] + A[j] == A[k]){
+                          count++;
+                      }
+                  }
+              }
+          }
+          cout<<count<<endl;
+          return 0;
+      }
+OUTPUT - 21
+        Enter 5 elements for the array :  
+        1 2 3 6 4
+        2
+
+Q2 Find the factorial of a large number.
+ANS - #include <iostream>
+      using namespace std;
+      const int MAX = 500;
+      // Function to multiply x with res[] and update res[] and res_size
+      int multiply(int x, int res[], int res_size) {
+          int carry = 0;
+          for (int i = 0; i < res_size; i++) {
+              int prod = res[i] * x + carry;
+              res[i] = prod % 10;
+              carry = prod / 10;
+          }
+          while (carry) {
+              res[res_size] = carry % 10;
+              carry /= 10;
+              res_size++;
+          }
+      
+          return res_size;
+      }
+      
+      // Function to find the factorial of a given number
+      void factorial(int n) {
+          int res[MAX];
+          res[0] = 1;
+          int res_size = 1;
+      
+          for (int x = 2; x <= n; x++)
+              res_size = multiply(x, res, res_size);
+      
+          cout << "Factorial of " << n << " is: ";
+          for (int i = res_size - 1; i >= 0; i--)
+              cout << res[i];
+      }
+      
+      int main() {
+          int n ; // Set the number for which factorial needs to be calculated
+          cin>>n;
+          factorial(n);
+          return 0;
+      }
+OUTPUT - 8
+         Factorial of 8 is: 40320
+
+Q3 Find the first non-repeating element in the array .
+ANS - #include <iostream>
+      using namespace std;
+      int main() {
+          int arr[5]={1,2,2,4,7};
+          int n=5;
+          for (int i = 0; i < n; i++) {
+              int j;
+              // Checking if ith element is present in array
+              for (j = 0; j < n; j++)
+              if (i != j && arr[i] == arr[j])break;
+              if (j == n){
+                  cout<<arr[i];
+                  return 0;
+              }
+          }
+          return 0;
+      }
+OUTPUT - 1
+
+Q4 Check if an array is a subset of another .
+ANS-  #include <iostream>
+      using namespace std;
+      int main(){
+          int A[] = { 0, 6, 0, 7, 6, 0, 9, 1 };
+          int n = 8;
+          int j = 0;
+              for (int i = 0; i < n; i++) {
+              if (A[i] != 0) {
+                  swap(A[j], A[i]);
+                  j++;
+              }
+          }
+          for (int i = 0; i < n; i++) {
+              cout << A[i] << " ";
+          }
+          return 0;
+      }
+OUTPUT - 6 7 6 9 1 0 0 0 
